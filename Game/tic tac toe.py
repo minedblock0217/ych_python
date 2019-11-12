@@ -99,18 +99,15 @@ while again_flag != 0:
 
         if check_User == True:
             print("player win!")
-            board = make_board()
             again_flag = again()
             break
 
         elif check_com == True:
             print("computer win!")
-            board = make_board()
             again_flag = again()
             break
 
         if board[0] != "*" and  board[1] != "*" and board[2] != "*" and board[3] != "*" and board[4] != "*" and board[5] != "*" and board[6] != "*" and board[7] != "*" and board[8] != "*":
             print("draw")
-            board = make_board()
             again_flag = again()
             break
