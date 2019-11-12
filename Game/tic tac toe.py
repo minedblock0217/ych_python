@@ -76,11 +76,10 @@ def again():
 #start code zone
 again_flag = 1
 while again_flag != 0:
-    print(again_flag)
     user_mark, com_mark = select_mark()
     turn = random_turn()
     board = make_board()
-    
+
     while True:
         print_board(board)
         check_User = check_win(board, user_mark)
