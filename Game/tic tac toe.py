@@ -1,4 +1,5 @@
 import random as r
+import os
 
 #choose mark for User
 def select_mark():
@@ -76,11 +77,13 @@ def again():
 #start code zone
 again_flag = 1
 while again_flag != 0:
+    os.system('cls')
     user_mark, com_mark = select_mark()
     turn = random_turn()
     board = make_board()
 
     while True:
+        os.system('cls')
         print_board(board)
         check_User = check_win(board, user_mark)
         check_com = check_win(board, com_mark)
