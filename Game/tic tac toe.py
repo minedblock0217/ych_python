@@ -2,14 +2,13 @@ import random as r
 
 #choose mark for User
 def select_mark():
-    user_mark = str(input("choose your mark>>>(x,o)")).lower()
+    user_mark = input("choose your mark>>>(x,o)").lower()
     if user_mark == 'x':
         return 'x','o'
     elif user_mark == 'o':
         return 'o','x'
     else:
-        while not (user_mark == 'x' or uesr_mark == 'o'):
-            uesr_mark = str(input("choose your mark>>>(x,o)"))
+        return select_mark()
 
 
 
@@ -55,33 +54,44 @@ def print_board(board):
     print("=====")
 
 def put_mark():
-    temp = int(input("Enter the number(0 ~ 8) : "))
-    while board[temp] == "o" or board[temp] == "x":
-        print("there is mark choose another one")
-        temp = int(input("Enter the number(0 ~ 8) : "))
+    temp = 0
+    while not temp:
+        try:
+            temp = int(input("Enter the number(0 ~ 8) : "))
+            if board[temp] == "o" or board[temp] == "x":
+                temp = 0
+                print("Error: there is mark choose another one")
+        except Exception as e:
+            print("Error:", e)
+            temp = 0
     return temp
 
 def again():
-    again = input("again?").lower()
+    again = input("again? (y/n) : ").lower()
     if again == 'y':
         again_flag = 1
+        return again_flag
+    else:
+        again_flag = 0
         return again_flag
 #start code zone
 again_flag = 1
 while again_flag != 0:
-    user_mark,com_mark = select_mark()
+    print(again_flag)
+    user_mark, com_mark = select_mark()
     turn = random_turn()
     board = make_board()
-
-    while(True):
+    while True:
         print_board(board)
         check_User = check_win(board, user_mark)
         check_com = check_win(board, com_mark)
-        if(turn == 0):
+
+        if turn == 0:
             temp = put_mark()
             board[temp] = user_mark
             turn = 1
-        elif(turn == 1):
+
+        elif turn == 1:
             com_put = r.randrange(0, 9)
             while board[com_put] != "*":
                 com_put = r.randrange(0,9)
@@ -89,14 +99,19 @@ while again_flag != 0:
             turn = 0
 
         if check_User == True:
-            print("player wind!")
+            print("player win!")
+            board = make_board()
             again_flag = again()
+            break
+
         elif check_com == True:
             print("computer win!")
+            board = make_board()
             again_flag = again()
+            break
 
         if board[0] != "*" and  board[1] != "*" and board[2] != "*" and board[3] != "*" and board[4] != "*" and board[5] != "*" and board[6] != "*" and board[7] != "*" and board[8] != "*":
             print("draw")
+            board = make_board()
             again_flag = again()
-
-
+            break
