@@ -10,8 +10,6 @@ def select_mark():
     else:
         return select_mark()
 
-
-
 # make random order (1 = com,0 = user)
 def random_turn():
     turn = r.randrange(0,2)
@@ -74,6 +72,7 @@ def again():
     else:
         again_flag = 0
         return again_flag
+
 #start code zone
 again_flag = 1
 while again_flag != 0:
@@ -81,6 +80,7 @@ while again_flag != 0:
     user_mark, com_mark = select_mark()
     turn = random_turn()
     board = make_board()
+    
     while True:
         print_board(board)
         check_User = check_win(board, user_mark)
