@@ -1,5 +1,13 @@
 import random as r
 import os
+import platform
+
+#function to clear the screen
+def clear():
+    if platform.system() == "Windows":
+        os.system('cls')
+    else:
+        os.system('clear')
 
 #choose mark for User
 def select_mark():
@@ -77,13 +85,13 @@ def again():
 #start code zone
 again_flag = 1
 while again_flag != 0:
-    os.system('cls')
+    clear()
     user_mark, com_mark = select_mark()
     turn = random_turn()
     board = make_board()
 
     while True:
-        os.system('cls')
+        clear()
         print_board(board)
         check_User = check_win(board, user_mark)
         check_com = check_win(board, com_mark)
