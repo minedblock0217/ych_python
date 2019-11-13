@@ -61,16 +61,16 @@ def print_board(board):
     print("=====")
 
 def put_mark():
-    temp = 0
-    while not temp:
+    temp = None
+    while temp == None:
         try:
             temp = int(input("Enter the number(0 ~ 8) : "))
             if board[temp] == "o" or board[temp] == "x":
-                temp = 0
+                temp = None
                 print("Error: there is mark choose another one")
         except Exception as e:
             print("Error:", e)
-            temp = 0
+            temp = None
     return temp
 
 def again():
